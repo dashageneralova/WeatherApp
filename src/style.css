@@ -43,6 +43,8 @@ p {
   color: #0d6efd;
   font-size: 65px;
   font-weight: bold;
+  position: relative;
+  right: 20px;
 }
 .currentInfo {
   margin-bottom: 0px;
@@ -112,9 +114,10 @@ p {
 }
 .unit {
   color: #0d6efd;
-  margin-left: 10px;
+  margin: 5px;
   position: relative;
   bottom: 30px;
+  right: 30px;
 }
 .upper {
   position: relative;
