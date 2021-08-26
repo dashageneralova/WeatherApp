@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Forecast</title>
     <link
@@ -32,134 +35,131 @@
         </div>
 
         <div class="row">
-          <div class="col-4">
+          <div class="col-10">
             <form class="form-inline row align" id="city-form">
-              <label class="sr-only" for="inlineFormInputCity2">Name</label>
+              <label class="sr-only" for="inlineFormInputCity2"
+                >Name</label
+              >
               <input
                 type="text"
                 class="form-control mb-2 mr-sm-2 col-8"
                 id="inlineFormInputCity2"
               />
-              <button type="submit" class="btn btn-primary mb-2 col-3">
+              <button
+                type="submit"
+                class="btn btn-primary mb-2 col-3"
+              >
                 Submit
               </button>
             </form>
           </div>
-          <div class="col-1">
-            <button type="button" class="btn btn-warning" id="current-position">
+          <div class="col-2">
+            <button
+              type="button"
+              class="btn btn-warning"
+              id="current-position"
+            >
               My location
             </button>
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-5">
-            <div class="city" id="city">
-              Vancouver
-              <button
-                type="button"
-                class="btn btn-outline-danger btn-sm noteButton"
-              >
-                Set as your city
-              </button>
-            </div>
-          </div>
+        <div class="city" id="city">
+          Vancouver
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm noteButton"
+          >
+            Set as your city
+          </button>
         </div>
 
-        <div class="row">
-          <div class="col-5">
-            <div class="dateTime" id="dateTime"></div>
-          </div>
-        </div>
+        <div class="dateTime" id="dateTime"></div>
 
         <div class="row currentInfo">
-          <div class="col-3">
+          <div class="col-6">
             <i class="fas fa-sun icon upper"></i>
             <img src="src/yacht.svg" class="icon bottom" />
             <span class="current" id="currentTemperature">19</span>
             <span class="unit">°C</span>
           </div>
-          <div class="col-2 jumbotron verdict">
+          <div class="col-6 jumbotron verdict">
             <p class="lead" id="jumbo">Have a great sail!</p>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-1 forecastDay">
-            Mon.
-          </div>
-          <div class="col-1 forecastDay">
-            Tue.
-          </div>
-          <div class="col-1 forecastDay">
-            Wed.
-          </div>
-          <div class="col-1 forecastDay">
-            Thur.
-          </div>
-          <div class="col-1 forecastDay">
-            Fri.
-          </div>
+          <div class="col-2 forecastDay">Mon.</div>
+          <div class="col-2 forecastDay">Tue.</div>
+          <div class="col-2 forecastDay">Wed.</div>
+          <div class="col-2 forecastDay">Thur.</div>
+          <div class="col-2 forecastDay">Fri.</div>
         </div>
         <div class="row">
-          <div class="col-1 forecastWeather">
+          <div class="col-2 forecastWeather">
             <i class="fas fa-sun forecastIcon sunIcon"></i>
             <img src="src/yacht.svg" class="forecastPic" />
           </div>
-          <div class="col-1 forecastWeather">
+          <div class="col-2 forecastWeather">
             <img src="src/sun-cloud.svg" class="forecastPic" />
             <i class="fas fa-ship forecastIcon shipIcon"></i>
           </div>
-          <div class="col-1 forecastWeather">
+          <div class="col-2 forecastWeather">
             <i class="fas fa-cloud forecastIcon cloudIcon"></i>
             <i class="fas fa-ship forecastIcon shipIcon"></i>
           </div>
-          <div class="col-1 forecastWeather">
-            <i class="fas fa-cloud-showers-heavy forecastIcon cloudIcon"></i>
+          <div class="col-2 forecastWeather">
+            <i
+              class="
+                fas
+                fa-cloud-showers-heavy
+                forecastIcon
+                cloudIcon
+              "
+            ></i>
             <i class="fas fa-ship forecastIcon shipIcon"></i>
           </div>
-          <div class="col-1 forecastWeather">
-            <i class="fas fa-cloud-showers-heavy forecastIcon cloudIcon"></i>
+          <div class="col-2 forecastWeather">
+            <i
+              class="
+                fas
+                fa-cloud-showers-heavy
+                forecastIcon
+                cloudIcon
+              "
+            ></i>
             <img src="src/sail.svg" class="forecastIcon sailIcon" />
             <i class="fas fa-ban banIcon"></i>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-1 forecastTemp">
-            25°C
-          </div>
-          <div class="col-1 forecastTemp">
-            21°C
-          </div>
-          <div class="col-1 forecastTemp">
-            23°C
-          </div>
-          <div class="col-1 forecastTemp">
-            20°C
-          </div>
-          <div class="col-1 forecastTemp">
-            20°C
-          </div>
+          <div class="col-2 forecastTemp">25°C</div>
+          <div class="col-2 forecastTemp">21°C</div>
+          <div class="col-2 forecastTemp">23°C</div>
+          <div class="col-2 forecastTemp">20°C</div>
+          <div class="col-2 forecastTemp">20°C</div>
         </div>
         <div class="row">
-          <div class="col-5 legendRef">
+          <div class="col-12 legendRef">
             <a href="legend.html" target="_blank">See the legend</a>
           </div>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-5" id="footer">
-          Open-source code on 
-          <a href="https://github.com/dashageneralova/WeatherApp" target="_blank">GitHub</a>
-          , by
+        <div class="col-12" id="footer">
+          <a
+            href="https://github.com/dashageneralova/WeatherApp"
+            target="_blank"
+            >Open-source code</a
+          >
+          by
           <a
             href="https://www.linkedin.com/in/daria-generalova-842a3a85/"
             target="_blank"
             >Daria Generalova</a
           >
-
         </div>
       </div>
     </div>
