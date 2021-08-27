@@ -6,7 +6,7 @@ function formatDay(now) {
     "Wednesday",
     "Thursday",
     "Friday",
-    "Saturday"
+    "Saturday",
   ];
   let day = days[now.getDay()];
   let hour = now.getHours();
@@ -27,10 +27,22 @@ divDay.innerHTML = formatDay(now);
 function showMyWeather(response) {
   let currentTemp = Math.round(response.data.main.temp);
   let myCity = response.data.name;
+  console.log(response);
+  let currentWeather = response.data.weather[0].description;
+  let currentWindSpeed = Math.round(response.data.wind.speed);
+  let currentHumidity = response.data.main.humidity;
   let city = document.querySelector("#city");
   city.innerHTML = myCity;
   let displayedTemp = document.querySelector("#currentTemperature");
   displayedTemp.innerHTML = currentTemp;
+  let weatherDescription = document.querySelector(
+    "#weatherDescription"
+  );
+  weatherDescription.innerHTML = currentWeather;
+  let windSpeed = document.querySelector("#currentWindSpeed");
+  windSpeed.innerHTML = currentWindSpeed;
+  let humidity = document.querySelector("#currentHumidity");
+  humidity.innerHTML = currentHumidity;
 }
 
 function getMyWeather(geo) {
@@ -45,10 +57,21 @@ function getMyGeo() {
 
 function logWeather(response) {
   let currentTemp = Math.round(response.data.main.temp);
+  let currentWeather = response.data.weather[0].description;
+  let currentWindSpeed = Math.round(response.data.wind.speed);
+  let currentHumidity = response.data.main.humidity;
   let divCity = document.querySelector("#city");
   divCity.innerHTML = response.data.name;
   let displayedTemp = document.querySelector("#currentTemperature");
   displayedTemp.innerHTML = currentTemp;
+  let weatherDescription = document.querySelector(
+    "#weatherDescription"
+  );
+  weatherDescription.innerHTML = currentWeather;
+  let windSpeed = document.querySelector("#currentWindSpeed");
+  windSpeed.innerHTML = currentWindSpeed;
+  let humidity = document.querySelector("#currentHumidity");
+  humidity.innerHTML = currentHumidity;
 }
 
 function cityDefine(event) {
