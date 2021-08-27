@@ -59,6 +59,12 @@ function showMyWeather(response) {
       currentWindIcon.setAttribute("src", "src/bigBoat.svg");
     }
   }
+  let currentDayTime = moment()
+    .utc()
+    .add(response.data.timezone, "seconds")
+    .format("dddd h:mm a");
+  let dayTime = document.querySelector("#dateTime");
+  dayTime.innerHTML = currentDayTime;
 }
 
 function getMyWeather(geo) {
@@ -105,6 +111,12 @@ function logWeather(response) {
       currentWindIcon.setAttribute("src", "src/bigBoat.svg");
     }
   }
+  let currentDayTime = moment()
+    .utc()
+    .add(response.data.timezone, "seconds")
+    .format("dddd h:mm a");
+  let dayTime = document.querySelector("#dateTime");
+  dayTime.innerHTML = currentDayTime;
 }
 
 function cityDefine(event) {
