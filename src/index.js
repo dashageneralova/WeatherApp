@@ -27,7 +27,6 @@ divDay.innerHTML = formatDay(now);
 function showMyWeather(response) {
   let currentTemp = Math.round(response.data.main.temp);
   let myCity = response.data.name;
-  console.log(response);
   let currentWeather = response.data.weather[0].description;
   let currentWindSpeed = Math.round(response.data.wind.speed);
   let currentHumidity = response.data.main.humidity;
@@ -43,6 +42,23 @@ function showMyWeather(response) {
   windSpeed.innerHTML = currentWindSpeed;
   let humidity = document.querySelector("#currentHumidity");
   humidity.innerHTML = currentHumidity;
+  let currentWeatherIcon = document.querySelector(
+    "#currentWeatherIcon"
+  );
+  currentWeatherIcon.setAttribute(
+    "src",
+    `src/${response.data.weather[0].icon}.svg`
+  );
+  let currentWindIcon = document.querySelector("#currentWindIcon");
+  if (currentWindSpeed < 16) {
+    currentWindIcon.setAttribute("src", "src/smallBoat.svg");
+  } else {
+    if (currentWindSpeed > 35) {
+      currentWindIcon.setAttribute("src", "src/boatWarning.svg");
+    } else {
+      currentWindIcon.setAttribute("src", "src/bigBoat.svg");
+    }
+  }
 }
 
 function getMyWeather(geo) {
@@ -72,6 +88,23 @@ function logWeather(response) {
   windSpeed.innerHTML = currentWindSpeed;
   let humidity = document.querySelector("#currentHumidity");
   humidity.innerHTML = currentHumidity;
+  let currentWeatherIcon = document.querySelector(
+    "#currentWeatherIcon"
+  );
+  currentWeatherIcon.setAttribute(
+    "src",
+    `src/${response.data.weather[0].icon}.svg`
+  );
+  let currentWindIcon = document.querySelector("#currentWindIcon");
+  if (currentWindSpeed < 16) {
+    currentWindIcon.setAttribute("src", "src/smallBoat.svg");
+  } else {
+    if (currentWindSpeed > 35) {
+      currentWindIcon.setAttribute("src", "src/boatWarning.svg");
+    } else {
+      currentWindIcon.setAttribute("src", "src/bigBoat.svg");
+    }
+  }
 }
 
 function cityDefine(event) {
