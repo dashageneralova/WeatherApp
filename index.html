@@ -86,8 +86,11 @@
           <div class="col-6">
             <img src="src/01d.svg" id="currentWeatherIcon" />
             <img src="src/smallBoat.svg" id="currentWindIcon" />
-            <span id="currentTemperature">19</span>
-            <span class="unit"> °C | °F</span>
+            <span id="currentTemperature"></span>
+            <span class="unit">
+              <a href="#" id="celsiusLink" class="active">°C</a> |
+              <a href="#" id="fahrenheitLink">°F</a>
+            </span>
             <div id="updateTime">Last update: Friday 02:32</div>
           </div>
           <div class="col-6 jumbotron verdict">

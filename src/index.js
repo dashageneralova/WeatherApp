@@ -21,25 +21,29 @@ function formatDayTime(date) {
 }
 
 function displayCityWeather(response) {
-  let currentTemp = Math.round(response.data.main.temp);
-  let currentWeather = response.data.weather[0].description;
   let currentWindSpeed = Math.round(response.data.wind.speed);
-  let currentHumidity = response.data.main.humidity;
+  celsiusTemperature = response.data.main.temp;
+
   let city = document.querySelector("#city");
-  city.innerHTML = response.data.name;
   let displayedTemp = document.querySelector("#currentTemperature");
-  displayedTemp.innerHTML = currentTemp;
   let weatherDescription = document.querySelector(
     "#weatherDescription"
   );
-  weatherDescription.innerHTML = currentWeather;
   let windSpeed = document.querySelector("#currentWindSpeed");
-  windSpeed.innerHTML = currentWindSpeed;
   let humidity = document.querySelector("#currentHumidity");
-  humidity.innerHTML = currentHumidity;
   let currentWeatherIcon = document.querySelector(
     "#currentWeatherIcon"
   );
+  let currentWindIcon = document.querySelector("#currentWindIcon");
+  let dayTime = document.querySelector("#dateTime");
+  let updateTime = document.querySelector("#updateTime");
+
+  city.innerHTML = response.data.name;
+  displayedTemp.innerHTML = Math.round(celsiusTemperature);
+  weatherDescription.innerHTML = response.data.weather[0].description;
+  windSpeed.innerHTML = currentWindSpeed;
+  humidity.innerHTML = response.data.main.humidity;
+
   currentWeatherIcon.setAttribute(
     "src",
     `src/${response.data.weather[0].icon}.svg`
@@ -48,7 +52,7 @@ function displayCityWeather(response) {
     "alt",
     response.data.weather[0].description
   );
-  let currentWindIcon = document.querySelector("#currentWindIcon");
+
   if (currentWindSpeed < 16) {
     currentWindIcon.setAttribute("src", "src/smallBoat.svg");
     currentWindIcon.setAttribute("alt", "boating weather");
@@ -61,13 +65,11 @@ function displayCityWeather(response) {
       currentWindIcon.setAttribute("alt", "small boats warning");
     }
   }
-  let currentDayTime = moment()
+
+  dayTime.innerHTML = moment()
     .utc()
     .add(response.data.timezone, "seconds")
     .format("dddd HH:mm");
-  let dayTime = document.querySelector("#dateTime");
-  dayTime.innerHTML = currentDayTime;
-  let updateTime = document.querySelector("#updateTime");
   updateTime.innerHTML =
     "Last update: " +
     formatDayTime(new Date(response.data.dt * 1000));
@@ -95,10 +97,36 @@ function getSubmitValue(event) {
   findCityWeather(cityInput.value);
 }
 
+function displayFahrenheitTemp(event) {
+  event.preventDefault();
+  let displayedTemp = document.querySelector("#currentTemperature");
+  displayedTemp.innerHTML = Math.round(
+    (celsiusTemperature * 9) / 5 + 32
+  );
+  fahrenheitLink.classList.add("active");
+  celsiusLink.classList.remove("active");
+}
+
+function displayCelciusTemp(event) {
+  event.preventDefault();
+  let displayedTemp = document.querySelector("#currentTemperature");
+  displayedTemp.innerHTML = Math.round(celsiusTemperature);
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+}
+
 findCityWeather("Vancouver");
+
+let celsiusTemperature = null;
 
 let form = document.querySelector("#city-form");
 form.addEventListener("submit", getSubmitValue);
 
 let myLocationButton = document.querySelector("#current-position");
 myLocationButton.addEventListener("click", getMyGeo);
+
+let fahrenheitLink = document.querySelector("#fahrenheitLink");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
+
+let celsiusLink = document.querySelector("#celsiusLink");
+celsiusLink.addEventListener("click", displayCelciusTemp);
