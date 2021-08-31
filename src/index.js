@@ -1,4 +1,4 @@
-function formatDay(now) {
+function formatDayTime(date) {
   let days = [
     "Sunday",
     "Monday",
@@ -8,12 +8,12 @@ function formatDay(now) {
     "Friday",
     "Saturday",
   ];
-  let day = days[now.getDay()];
-  let hour = now.getHours();
+  let day = days[date.getDay()];
+  let hour = date.getHours();
   if (hour < 10) {
     hour = `0${hour}`;
   }
-  let minute = now.getMinutes();
+  let minute = date.getMinutes();
   if (minute < 10) {
     minute = `0${minute}`;
   }
@@ -22,7 +22,7 @@ function formatDay(now) {
 
 let now = new Date();
 let divDay = document.querySelector("#dateTime");
-divDay.innerHTML = formatDay(now);
+divDay.innerHTML = formatDayTime(now);
 
 function showMyWeather(response) {
   let currentTemp = Math.round(response.data.main.temp);
@@ -62,9 +62,13 @@ function showMyWeather(response) {
   let currentDayTime = moment()
     .utc()
     .add(response.data.timezone, "seconds")
-    .format("dddd h:mm a");
+    .format("dddd HH:mm");
   let dayTime = document.querySelector("#dateTime");
   dayTime.innerHTML = currentDayTime;
+  let updateTime = document.querySelector("#updateTime");
+  updateTime.innerHTML =
+    "Last update: " +
+    formatDayTime(new Date(response.data.dt * 1000));
 }
 
 function getMyWeather(geo) {
@@ -114,9 +118,13 @@ function logWeather(response) {
   let currentDayTime = moment()
     .utc()
     .add(response.data.timezone, "seconds")
-    .format("dddd h:mm a");
+    .format("dddd HH:mm");
   let dayTime = document.querySelector("#dateTime");
   dayTime.innerHTML = currentDayTime;
+  let updateTime = document.querySelector("#updateTime");
+  updateTime.innerHTML =
+    "Last update: " +
+    formatDayTime(new Date(response.data.dt * 1000));
 }
 
 function cityDefine(event) {

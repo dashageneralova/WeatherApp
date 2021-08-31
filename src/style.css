@@ -40,7 +40,7 @@ ul {
   padding: 20px 50px 20px 30px;
 }
 .currentInfo {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 .dateTime {
   color: #dc3545;
@@ -142,6 +142,10 @@ ul {
   font-weight: 500;
   vertical-align: middle;
   margin: 0;
+}
+#updateTime {
+  color: #adb5bd;
+  font-size: 12px;
 }
 #weatherDescription {
   color: #dc3545;
