@@ -49,14 +49,21 @@ function showMyWeather(response) {
     "src",
     `src/${response.data.weather[0].icon}.svg`
   );
+  currentWeatherIcon.setAttribute(
+    "alt",
+    response.data.weather[0].description
+  );
   let currentWindIcon = document.querySelector("#currentWindIcon");
   if (currentWindSpeed < 16) {
     currentWindIcon.setAttribute("src", "src/smallBoat.svg");
+    currentWindIcon.setAttribute("alt", "boating weather");
   } else {
     if (currentWindSpeed > 35) {
       currentWindIcon.setAttribute("src", "src/boatWarning.svg");
+      currentWindIcon.setAttribute("alt", "all boats warning");
     } else {
       currentWindIcon.setAttribute("src", "src/bigBoat.svg");
+      currentWindIcon.setAttribute("alt", "small boats warning");
     }
   }
   let currentDayTime = moment()
@@ -105,16 +112,24 @@ function logWeather(response) {
     "src",
     `src/${response.data.weather[0].icon}.svg`
   );
+  currentWeatherIcon.setAttribute(
+    "alt",
+    response.data.weather[0].description
+  );
   let currentWindIcon = document.querySelector("#currentWindIcon");
   if (currentWindSpeed < 16) {
     currentWindIcon.setAttribute("src", "src/smallBoat.svg");
+    currentWindIcon.setAttribute("alt", "boating weather");
   } else {
     if (currentWindSpeed > 35) {
       currentWindIcon.setAttribute("src", "src/boatWarning.svg");
+      currentWindIcon.setAttribute("alt", "all boats warning");
     } else {
       currentWindIcon.setAttribute("src", "src/bigBoat.svg");
+      currentWindIcon.setAttribute("alt", "small boats warning");
     }
   }
+
   let currentDayTime = moment()
     .utc()
     .add(response.data.timezone, "seconds")
