@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Legend</title>
     <link
       rel="stylesheet"
@@ -20,77 +23,120 @@
   <body>
     <div class="container">
       <div class="content">
-        <h1>
-          Weather legend
-        </h1>
+        <h1>Weather legend</h1>
 
         <div class="legendTable">
           <div class="row">
             <div class="col-1">
-              <i class="fas fa-sun sunIcon legendIcon"></i>
+              <img src="src/01d.svg" class="legendIcon" />
             </div>
-            <div class="col-3 legendText">
-              Sunny
+            <div class="col-5 legendText">Clear sky (day)</div>
+            <div class="col-1">
+              <img src="src/01n.svg" class="legendIcon" />
             </div>
-            <div class="col-1 windIcons">
-              <img src="src/yacht.svg" class="legendIcon" />
-            </div>
-            <div class="col-3">
-              <div class="legendText">Wind 0-15 km/h</div>
-              <div class="legendNote">Great sailing conditions</div>
-            </div>
+            <div class="col-5 legendText">Clear sky (night)</div>
           </div>
 
           <div class="row">
             <div class="col-1">
-              <img src="src/sun-cloud.svg" class="legendIcon" />
+              <img src="src/02d.svg" class="legendIcon" />
             </div>
-            <div class="col-3 legendText">
-              Partly clouds
+            <div class="col-5 legendText">Few clouds (day)</div>
+            <div class="col-1">
+              <img src="src/02n.svg" class="legendIcon" />
             </div>
-            <div class="col-1 windIcons">
-              <img src="src/sail.svg" class="legendIcon sailIcon" />
-              <i class="fas fa-ban legendIcon banLegendIcon"></i>
-            </div>
-            <div class="col-3">
-              <div class="legendText">Wind 16-35 km/h</div>
-              <div class="legendNote">Small boats warning</div>
-            </div>
+            <div class="col-5 legendText">Few clouds (night)</div>
           </div>
 
           <div class="row">
             <div class="col-1">
-              <i class="fas fa-cloud cloudIcon legendIcon"></i>
+              <img src="src/03d.svg" class="legendIcon" />
             </div>
-            <div class="col-3 legendText">
-              Cloudy
+            <div class="col-5 legendText">Scattered clouds</div>
+            <div class="col-1">
+              <img src="src/04d.svg" class="legendIcon" />
             </div>
-            <div class="col-1 windIcons">
-              <i class="fas fa-ship forecastIcon shipIcon"></i>
-            </div>
-            <div class="col-3">
-              <div class="legendText">Wind over 35 km/h</div>
-              <div class="legendNote">All boats warning</div>
-            </div>
+            <div class="col-5 legendText">Broken clouds</div>
           </div>
 
           <div class="row">
             <div class="col-1">
-              <i class="fas fa-cloud-showers-heavy cloudIcon legendIcon"></i>
+              <img src="src/10d.svg" class="legendIcon" />
             </div>
-            <div class="col-3 legendText">
-              Rainy
+            <div class="col-5 legendText">Rain (day)</div>
+            <div class="col-1">
+              <img src="src/10n.svg" class="legendIcon" />
             </div>
+            <div class="col-5 legendText">Rain (night)</div>
           </div>
 
           <div class="row">
             <div class="col-1">
-              <img src="src/snow.svg" class="legendIcon" />
+              <img src="src/09d.svg" class="legendIcon" />
             </div>
-            <div class="col-3 legendText">
-              Snow
+            <div class="col-5 legendText">Shower rain</div>
+            <div class="col-1">
+              <img src="src/11d.svg" class="legendIcon" />
+            </div>
+            <div class="col-5 legendText">Thunderstorm</div>
+          </div>
+
+          <div class="row">
+            <div class="col-1">
+              <img src="src/13d.svg" class="legendIcon" />
+            </div>
+            <div class="col-5 legendText">Snow</div>
+            <div class="col-1">
+              <img src="src/50d.svg" class="legendIcon" />
+            </div>
+            <div class="col-5 legendText">Mist</div>
+          </div>
+
+          <div class="windLegend">
+            <div class="row">
+              <div class="col-1">
+                <img src="src/smallBoat.svg" class="legendWindIcon" />
+              </div>
+              <div class="col-5 legendText">Wind 0-15 km/h</div>
+              <div class="col-6 legendNote">
+                Great sailing conditions
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-1">
+                <img src="src/bigBoat.svg" class="legendWindIcon" />
+              </div>
+              <div class="col-5 legendText">Wind 16-35 km/h</div>
+              <div class="col-6 legendNote">Small boats warning</div>
+            </div>
+
+            <div class="row">
+              <div class="col-1">
+                <img
+                  src="src/boatWarning.svg"
+                  class="legendWindIcon"
+                />
+              </div>
+              <div class="col-5 legendText">Wind over 35 km/h</div>
+              <div class="col-6 legendNote">All boats warning</div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12" id="footer">
+          <a
+            href="https://github.com/dashageneralova/WeatherApp"
+            target="_blank"
+            >Open-source code</a
+          >
+          by
+          <a
+            href="https://www.linkedin.com/in/daria-generalova-842a3a85/"
+            target="_blank"
+            >Daria Generalova</a
+          >
         </div>
       </div>
     </div>
