@@ -95,7 +95,14 @@ function displayCityWeather(response) {
     "Last update: " +
     formatDayTime(new Date(response.data.dt * 1000));
 
-  displayForecast();
+  console.log(response);
+  getCityForecast(response.data.coord);
+}
+
+function getCityForecast(coordinates) {
+  let apiKey = "9fec9e7231d9ae66f5a9a5b307926c8c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&exclude=current,minutely,hourly,alerts&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function getMyWeather(geo) {
