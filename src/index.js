@@ -19,6 +19,27 @@ function formatDayTime(date) {
   }
   return `${day} ${hour}:${minute}`;
 }
+function displayForecast() {
+  let dayForecast = document.querySelector("#forecastPanel");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Mon", "Tue", "Wed"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+    <div class="col-2">
+        <div class="forecastDay">${day}</div>
+        <div class="forecastWeather">
+              <img src="src/01d.svg" class="forecastPic" />
+              <img src="src/smallBoat.svg" class="forecastPic" />
+        </div>
+        <div class="forecastTemp">25°C</div>
+    </div>
+    `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  dayForecast.innerHTML = forecastHTML;
+}
 
 function displayCityWeather(response) {
   let currentWindSpeed = Math.round(response.data.wind.speed);
@@ -73,6 +94,8 @@ function displayCityWeather(response) {
   updateTime.innerHTML =
     "Last update: " +
     formatDayTime(new Date(response.data.dt * 1000));
+
+  displayForecast();
 }
 
 function getMyWeather(geo) {
