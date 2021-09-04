@@ -109,6 +109,7 @@ function displayCityWeather(response) {
     formatDayTime(new Date(response.data.dt * 1000));
 
   getCityForecast(response.data.coord);
+  displayCelciusTemp();
 }
 
 function defineWindIconSrc(windSpeed) {
@@ -183,8 +184,7 @@ function displayFahrenheitTemp(event) {
   celsiusLink.classList.remove("active");
 }
 
-function displayCelciusTemp(event) {
-  event.preventDefault();
+function displayCelciusTemp() {
   let displayedTemp = document.querySelector("#currentTemperature");
   displayedTemp.innerHTML = Math.round(celsiusTemperature);
   let forecastTemp = document.querySelectorAll(".forecastTemp");
@@ -195,6 +195,11 @@ function displayCelciusTemp(event) {
     celsiusLink.classList.add("active");
     fahrenheitLink.classList.remove("active");
   });
+}
+
+function preventLinkDefault(event) {
+  event.preventDefault();
+  displayCelciusTemp();
 }
 
 findCityWeather("Vancouver");
@@ -213,4 +218,4 @@ let fahrenheitLink = document.querySelector("#fahrenheitLink");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemp);
 
 let celsiusLink = document.querySelector("#celsiusLink");
-celsiusLink.addEventListener("click", displayCelciusTemp);
+celsiusLink.addEventListener("click", preventLinkDefault);
