@@ -19,23 +19,39 @@ function formatDayTime(date) {
   }
   return `${day} ${hour}:${minute}`;
 }
-function displayForecast() {
+
+function formatForecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  console.log(forecast);
   let dayForecast = document.querySelector("#forecastPanel");
   let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tue", "Wed"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-    <div class="col-2">
-        <div class="forecastDay">${day}</div>
-        <div class="forecastWeather">
-              <img src="src/01d.svg" class="forecastPic" />
-              <img src="src/smallBoat.svg" class="forecastPic" />
-        </div>
-        <div class="forecastTemp">25°C</div>
-    </div>
-    `;
+  forecast.forEach(function (day, index) {
+    let dayTemp = Math.round(day.temp.day);
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+      <div class="col-2">
+         <div class="forecastDay">${formatForecastDay(day.dt)}</div>
+         <div class="forecastWeather">
+              <img src="src/${
+                day.weather[0].icon
+              }.svg" class="forecastPic" />
+              <img src=${defineWindIconSrc(
+                day.wind_speed
+              )} class="forecastPic" />
+         </div>
+         <div class="forecastTemp">${dayTemp}°C</div>
+      </div>
+      `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   dayForecast.innerHTML = forecastHTML;
@@ -74,18 +90,14 @@ function displayCityWeather(response) {
     response.data.weather[0].description
   );
 
-  if (currentWindSpeed < 16) {
-    currentWindIcon.setAttribute("src", "src/smallBoat.svg");
-    currentWindIcon.setAttribute("alt", "boating weather");
-  } else {
-    if (currentWindSpeed > 35) {
-      currentWindIcon.setAttribute("src", "src/boatWarning.svg");
-      currentWindIcon.setAttribute("alt", "all boats warning");
-    } else {
-      currentWindIcon.setAttribute("src", "src/bigBoat.svg");
-      currentWindIcon.setAttribute("alt", "small boats warning");
-    }
-  }
+  currentWindIcon.setAttribute(
+    "src",
+    `${defineWindIconSrc(currentWindSpeed)}`
+  );
+  currentWindIcon.setAttribute(
+    "alt",
+    `${defineWindIconAlt(currentWindSpeed)}`
+  );
 
   dayTime.innerHTML = moment()
     .utc()
@@ -97,6 +109,34 @@ function displayCityWeather(response) {
 
   console.log(response);
   getCityForecast(response.data.coord);
+}
+
+function defineWindIconSrc(windSpeed) {
+  let windIconSrc = null;
+  if (windSpeed < 16) {
+    windIconSrc = "src/smallBoat.svg";
+  } else {
+    if (windSpeed > 35) {
+      windIconSrc = "src/boatWarning.svg";
+    } else {
+      windIconSrc = "src/bigBoat.svg";
+    }
+  }
+  return windIconSrc;
+}
+
+function defineWindIconAlt(windSpeed) {
+  let windIconAlt = null;
+  if (windSpeed < 16) {
+    windIconAlt = "boating weather";
+  } else {
+    if (windSpeed > 35) {
+      windIconAlt = "all boats warning";
+    } else {
+      windIconSrc = "small boats warning";
+    }
+  }
+  return windIconAlt;
 }
 
 function getCityForecast(coordinates) {

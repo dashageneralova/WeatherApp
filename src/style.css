@@ -162,6 +162,9 @@ ul {
   font-weight: lighter;
   margin-top: 10px;
 }
+#forecastPanel {
+  text-align: center;
+}
 #jumboLead {
   font-weight: 500;
   vertical-align: middle;
