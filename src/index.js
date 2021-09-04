@@ -29,8 +29,8 @@ function formatForecastDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
-  console.log(forecast);
   let dayForecast = document.querySelector("#forecastPanel");
+
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (day, index) {
     let dayTemp = Math.round(day.temp.day);
@@ -51,6 +51,7 @@ function displayForecast(response) {
          <div class="forecastTemp">${dayTemp}°C</div>
       </div>
       `;
+      celsiusTempForecast[index] = dayTemp;
     }
   });
   forecastHTML = forecastHTML + `</div>`;
@@ -107,7 +108,6 @@ function displayCityWeather(response) {
     "Last update: " +
     formatDayTime(new Date(response.data.dt * 1000));
 
-  console.log(response);
   getCityForecast(response.data.coord);
 }
 
@@ -173,6 +173,12 @@ function displayFahrenheitTemp(event) {
   displayedTemp.innerHTML = Math.round(
     (celsiusTemperature * 9) / 5 + 32
   );
+  let forecastTemp = document.querySelectorAll(".forecastTemp");
+  forecastTemp.forEach(function (celsiusTempDisplayed, index) {
+    forecastTemp[index].innerHTML = `${Math.round(
+      (celsiusTempForecast[index] * 9) / 5 + 32
+    )} °F`;
+  });
   fahrenheitLink.classList.add("active");
   celsiusLink.classList.remove("active");
 }
@@ -181,13 +187,21 @@ function displayCelciusTemp(event) {
   event.preventDefault();
   let displayedTemp = document.querySelector("#currentTemperature");
   displayedTemp.innerHTML = Math.round(celsiusTemperature);
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
+  let forecastTemp = document.querySelectorAll(".forecastTemp");
+  forecastTemp.forEach(function (fahrenheitTempDisplayed, index) {
+    forecastTemp[
+      index
+    ].innerHTML = `${celsiusTempForecast[index]} °C`;
+    celsiusLink.classList.add("active");
+    fahrenheitLink.classList.remove("active");
+  });
 }
 
 findCityWeather("Vancouver");
 
 let celsiusTemperature = null;
+
+let celsiusTempForecast = [];
 
 let form = document.querySelector("#city-form");
 form.addEventListener("submit", getSubmitValue);
